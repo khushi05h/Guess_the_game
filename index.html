@@ -1,0 +1,55 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Guess the Number Game</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      text-align: center;
+      padding-top: 50px;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+    }
+    #message {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎯 Guess the Number!</h1>
+  <p>I'm thinking of a number between 1 and 100</p>
+  
+  <input type="number" id="userGuess" placeholder="Enter your guess" />
+  <button onclick="checkGuess()">Submit</button>
+
+  <div id="message"></div>
+
+  <script>
+    const numberToGuess = Math.floor(Math.random() * 100) + 1;
+    let attempts = 0;
+
+    function checkGuess() {
+      const userGuess = parseInt(document.getElementById('userGuess').value);
+      const message = document.getElementById('message');
+      attempts++;
+
+      if (isNaN(userGuess)) {
+        message.textContent = "❌ Please enter a valid number.";
+      } else if (userGuess < numberToGuess) {
+        message.textContent = "Too low! Try again.";
+      } else if (userGuess > numberToGuess) {
+        message.textContent = "Too high! Try again.";
+      } else {
+        message.textContent = `🎉 Correct! You guessed it in ${attempts} attempts.`;
+      }
+    }
+  </script>
+
+</body>
+</html>
